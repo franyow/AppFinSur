@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:title="Solicitar Evaluación" />
+
+    <TextView
+        android:id="@+id/textView11"
+        style="@style/text_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:text="Tipo de documento:"
+        app:layout_constraintTop_toBottomOf="@+id/imgAgencia"
+        tools:layout_editor_absoluteX="54dp" />
+
+    <RadioButton
+        android:id="@+id/radioButton"
+        style="@style/text_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dni"
+        tools:layout_editor_absoluteX="120dp"
+        tools:layout_editor_absoluteY="366dp" />
+
+    <RadioButton
+        android:id="@+id/radioButton2"
+        style="@style/text_profile"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:text="RUC"
+        tools:layout_editor_absoluteX="211dp"
+        tools:layout_editor_absoluteY="366dp" />
+
+    <EditText
+        android:id="@+id/editText7"
+        android:layout_width="302dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Ingrese documento"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="432dp" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="143dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="60dp"
+        android:background="@color/grissfuerte"
+        android:text="Evaluar"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText7" />
+
+    <ImageView
+        android:id="@+id/imgAgencia"
+        android:layout_width="202dp"
+        android:layout_height="169dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.574"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2"
+        app:srcCompat="@drawable/evaluation" />
+</android.support.constraint.ConstraintLayout>
