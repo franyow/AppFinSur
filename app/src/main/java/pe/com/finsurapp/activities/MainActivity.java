@@ -8,14 +8,16 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextView;
 
 import pe.com.finsurapp.R;
 import pe.com.finsurapp.fragments.AgenciasFragment;
+import pe.com.finsurapp.fragments.CreditosDetalleFragment;
 import pe.com.finsurapp.fragments.CreditosFragment;
 import pe.com.finsurapp.fragments.PerfilFragment;
 
-public class MainActivity extends AppCompatActivity implements AgenciasFragment.OnFragmentInteractionListener, CreditosFragment.OnFragmentInteractionListener, PerfilFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements AgenciasFragment.OnFragmentInteractionListener, CreditosFragment.OnFragmentInteractionListener, PerfilFragment.OnFragmentInteractionListener , CreditosDetalleFragment.OnFragmentInteractionListener, ComunicateFragments{
 
     private Fragment fragment;
 
@@ -66,6 +68,19 @@ public class MainActivity extends AppCompatActivity implements AgenciasFragment.
             transaction.replace(R.id.container, fragment).commit();
 
 
+
+    }
+
+    @Override
+    public void enviarCredito(String codCredito, String nombreCredito) {
+        Fragment fragment = new CreditosDetalleFragment();
+        Bundle bundleEnvio = new Bundle();
+
+        bundleEnvio.putString("codigoCredito",codCredito);
+        bundleEnvio.putString("nombreCredito",nombreCredito);
+        fragment.setArguments(bundleEnvio);
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.container,fragment).addToBackStack(null).commit();
 
     }
 }

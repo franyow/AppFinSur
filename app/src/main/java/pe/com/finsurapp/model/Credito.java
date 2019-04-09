@@ -1,11 +1,13 @@
 package pe.com.finsurapp.model;
 
 public class Credito {
+    String codCredito;
     int imgCredito;
     String nombreCredito;
     String descripcionCredito;
 
-    public Credito(int imgCredito, String nombreCredito, String descripcionCredito) {
+    public Credito(String codCredito, int imgCredito, String nombreCredito, String descripcionCredito) {
+        this.codCredito = codCredito;
         this.imgCredito = imgCredito;
         this.nombreCredito = nombreCredito;
         this.descripcionCredito = descripcionCredito;
@@ -33,5 +35,11 @@ public class Credito {
 
     public void setDescripcionCredito(String descripcionCredito) {
         this.descripcionCredito = descripcionCredito;
+    }
+    public String getCodCredito() {
+        return codCredito;
+    }
+    public void setCodCredito(String codCredito) {
+        this.codCredito = codCredito;
     }
 }

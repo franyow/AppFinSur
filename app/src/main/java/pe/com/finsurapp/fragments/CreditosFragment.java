@@ -1,5 +1,6 @@
 package pe.com.finsurapp.fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,8 +17,10 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 import pe.com.finsurapp.R;
+import pe.com.finsurapp.activities.ComunicateFragments;
 import pe.com.finsurapp.adapters.CreditosAdapter;
 import pe.com.finsurapp.model.Credito;
 
@@ -30,6 +33,8 @@ public class CreditosFragment extends Fragment {
     RecyclerView rvCreditos;
     CreditosAdapter adapter;
     List<Credito> creditos = new ArrayList<>();
+    ComunicateFragments comunicateFragments;
+    Activity activity;
     Unbinder unbinder;
 
     // TODO: Rename and change types of parameters
@@ -72,7 +77,7 @@ public class CreditosFragment extends Fragment {
         adapter=new CreditosAdapter(creditos);
         rvCreditos.setLayoutManager(new GridLayoutManager(getContext(),2));
         rvCreditos.setAdapter(adapter);
-        Log.e("GG","ON CREATE VIEW CREDITO");
+        navigateToCreditoDetail();
 
 
 
@@ -80,24 +85,46 @@ public class CreditosFragment extends Fragment {
     }
 
     public void cargarCreditos(){
-        creditos.add(new Credito(R.drawable.educativo_credito,"Crédito educativo","Estudia lo que siempre quisiste, en la universidad de tu elección."));
-        creditos.add(new Credito(R.drawable.ecologico_credito,"Crédito ecológico","Dale vida a tus propósitos con sostenibilidad ambiental."));
-        creditos.add(new Credito(R.drawable.hipotecario_credito,"Crédito hipotecario","Tener casa propia es una de las decisiones más importantes de tu vida. Tómala."));
-        creditos.add(new Credito(R.drawable.vehicular_credito,"Crédito Vehicular", "Conduce tu vida sobre ruedas. Elige el vehículo que se ajusta a tus necesidades."));
-        creditos.add(new Credito(R.drawable.linea_abierta_credito,"Linea Abierta", "Nos interesa tu crecimiento, completa aquel proyecto personal que tienes en mente."));
-        creditos.add(new Credito(R.drawable.img_cred_multiproposito,"Crédito Multipropósito","Llegó el momento de hacer realidad tus propósitos. Todos tenemos algo pendiente por cumplir."));
+        creditos.add(new Credito("01",R.drawable.educativo_credito,"Crédito educativo","Estudia lo que siempre quisiste, en la universidad de tu elección."));
+        creditos.add(new Credito("02",R.drawable.ecologico_credito,"Crédito ecológico","Dale vida a tus propósitos con sostenibilidad ambiental."));
+        creditos.add(new Credito("03",R.drawable.hipotecario_credito,"Crédito hipotecario","Tener casa propia es una de las decisiones más importantes de tu vida. Tómala."));
+        creditos.add(new Credito("04",R.drawable.vehicular_credito,"Crédito Vehicular", "Conduce tu vida sobre ruedas. Elige el vehículo que se ajusta a tus necesidades."));
+        creditos.add(new Credito("05",R.drawable.linea_abierta_credito,"Linea Abierta", "Nos interesa tu crecimiento, completa aquel proyecto personal que tienes en mente."));
+        creditos.add(new Credito("06",R.drawable.img_cred_multiproposito,"Crédito Multipropósito","Llegó el momento de hacer realidad tus propósitos. Todos tenemos algo pendiente por cumplir."));
     }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
+
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
     }
 
+
+    public void navigateToCreditoDetail(){
+        adapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    String credito = creditos.get(rvCreditos.getChildAdapterPosition(v)).getCodCredito();
+                    String nombreCredito = creditos.get(rvCreditos.getChildAdapterPosition(v)).getNombreCredito();
+                    comunicateFragments.enviarCredito(credito,nombreCredito);
+            }
+        });
+    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+
+
+        if(context instanceof Activity){
+            this.activity = (Activity) context;
+            comunicateFragments= (ComunicateFragments) this.activity;
+        }
+
+
+
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {

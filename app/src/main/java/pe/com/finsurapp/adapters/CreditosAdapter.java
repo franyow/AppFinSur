@@ -53,6 +53,11 @@ public class CreditosAdapter extends RecyclerView.Adapter<CreditosAdapter.ViewHo
         }
     }
 
+    public void setOnClickListener(View.OnClickListener listener){
+        this.listener=listener;
+
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.imgCredito)
         ImageView imgCredito;
