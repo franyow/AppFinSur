@@ -1,5 +1,6 @@
 package pe.com.finsurapp.adapters;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -20,10 +23,11 @@ public class CreditosAdapter extends RecyclerView.Adapter<CreditosAdapter.ViewHo
 
     private View.OnClickListener listener;
     List<Credito> listaCreditos;
+    Context context;
 
-    public CreditosAdapter(List<Credito> listaCreditos) {
-
+    public CreditosAdapter(List<Credito> listaCreditos, Context context) {
         this.listaCreditos = listaCreditos;
+        this.context = context;
     }
 
     @NonNull
@@ -36,7 +40,13 @@ public class CreditosAdapter extends RecyclerView.Adapter<CreditosAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        viewHolder.imgCredito.setImageResource(listaCreditos.get(i).getImgCredito());
+        //viewHolder.imgCredito.setImageResource(listaCreditos.get(i).getImgCredito());
+        Picasso.get()
+                .load(listaCreditos.get(i).getImgCredito())
+                //.placeholder(R.drawable.img_cred_multiproposito)
+                .noPlaceholder()
+                .fit()
+                .into(viewHolder.imgCredito);
         viewHolder.txtTituloCredito.setText(listaCreditos.get(i).getNombreCredito());
         viewHolder.txtDescripcionCredito.setText(listaCreditos.get(i).getDescripcionCredito());
     }

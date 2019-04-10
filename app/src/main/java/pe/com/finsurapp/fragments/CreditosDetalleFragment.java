@@ -9,25 +9,31 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import pe.com.finsurapp.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link OnFragmentInteractionListener} interface
- * to handle interaction events.
- */
+
 public class CreditosDetalleFragment extends Fragment {
 
-    @BindView(R.id.btnBundle)
-    Button btnBundle;
+
+    String codCredForBundle, nomCreForBundle;
+
+    @BindView(R.id.nombreCredito)
+    TextView nombreCredito;
     Unbinder unbinder;
-    String codCredForBundle,nomCreForBundle;
+    @BindView(R.id.button)
+    Button button;
+    @BindView(R.id.textView3)
+    TextView textView3;
+    @BindView(R.id.textView4)
+    TextView textView4;
     private OnFragmentInteractionListener mListener;
+
 
     public CreditosDetalleFragment() {
         // Required empty public constructor
@@ -37,9 +43,9 @@ public class CreditosDetalleFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle storeObject = getArguments();
-        if(storeObject != null){
-            codCredForBundle= storeObject.getString("codigoCredito");
-            nomCreForBundle= storeObject.getString("nombreCredito");
+        if (storeObject != null) {
+            codCredForBundle = storeObject.getString("codigoCredito");
+            nomCreForBundle = storeObject.getString("nombreCredito");
 
         }
     }
@@ -50,8 +56,8 @@ public class CreditosDetalleFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_creditos_detalle, container, false);
         unbinder = ButterKnife.bind(this, view);
-
-        btnBundle.setText(nomCreForBundle);
+        nombreCredito.setText(nomCreForBundle);
+        Toast.makeText(getContext(), "Test- Codigo crédito: " + codCredForBundle, Toast.LENGTH_SHORT).show();
 
         return view;
     }
@@ -84,6 +90,7 @@ public class CreditosDetalleFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+
     }
 
 
@@ -91,4 +98,6 @@ public class CreditosDetalleFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+
 }

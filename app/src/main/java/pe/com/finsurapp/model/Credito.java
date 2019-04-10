@@ -1,23 +1,34 @@
 package pe.com.finsurapp.model;
 
-public class Credito {
-    String codCredito;
-    int imgCredito;
-    String nombreCredito;
-    String descripcionCredito;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    public Credito(String codCredito, int imgCredito, String nombreCredito, String descripcionCredito) {
+public class Credito {
+    @SerializedName("codCredito")
+    @Expose
+    private String codCredito;
+    @SerializedName("imgCredito")
+    @Expose
+    private String imgCredito;
+    @SerializedName("nombreCredito")
+    @Expose
+    private String nombreCredito;
+    @SerializedName("descripcionCredito")
+    @Expose
+    private String descripcionCredito;
+
+    public Credito(String codCredito, String imgCredito, String nombreCredito, String descripcionCredito) {
         this.codCredito = codCredito;
         this.imgCredito = imgCredito;
         this.nombreCredito = nombreCredito;
         this.descripcionCredito = descripcionCredito;
     }
 
-    public int getImgCredito() {
+    public String getImgCredito() {
         return imgCredito;
     }
 
-    public void setImgCredito(int imgCredito) {
+    public void setImgCredito(String imgCredito) {
         this.imgCredito = imgCredito;
     }
 

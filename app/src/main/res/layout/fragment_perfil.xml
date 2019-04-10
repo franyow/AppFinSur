@@ -198,14 +198,16 @@
         </LinearLayout>
     </LinearLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="35dp"
-        android:background="@drawable/buttonstyle"
-        android:text="asdasd"
-        android:textColor="@color/colorAccent" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/buttonstyle"
+            android:text="Modificar Datos"
+            android:textColor="@color/white" />
 
     </LinearLayout>
 

@@ -84,7 +84,6 @@ public class AgenciasFragment extends Fragment {
         agencias.add(new Agencia("Agencia Manchay","Plaza De Armas, S/N, Lima","(01) 3574645","","","LIMA"));
         agencias.add(new Agencia("Agencia Bellavista","Av. Oscar R. Benavides 4742, Bellavista 07006","","","","LIMA"));
 
-
     }
 
 
