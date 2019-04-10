@@ -10,12 +10,12 @@
 
     <!-- XML file for the style (saved in res/values/) -->
 
-        <style name="nombre_finsur">
-            <item name="android:fontFamily">Bree Serif</item>
-            <item name="android:textColor">#FFF95F62</item>
-            <item name="android:textSize">39sp</item>
-            <item name="android:lineSpacingMultiplier">1.29</item>
-        </style>
+    <style name="nombre_finsur">
+        <item name="android:fontFamily">Bree Serif</item>
+        <item name="android:textColor">#FFF95F62</item>
+        <item name="android:textSize">39sp</item>
+        <item name="android:lineSpacingMultiplier">1.29</item>
+    </style>
 
     <style name="text_finsur">
         <item name="android:fontFamily">Lato</item>
@@ -46,15 +46,22 @@
     </style>
 
 
-        <style name="text_profile">
-            <item name="android:fontFamily">Glacial Indifference</item>
-            <item name="android:textColor">#FF47525E</item>
-            <item name="android:textSize">14sp</item>
-            <item name="android:textStyle">bold</item>
-            <item name="android:lineSpacingMultiplier">1.3</item>
-        </style>
+    <style name="text_profile">
+        <item name="android:fontFamily">Glacial Indifference</item>
+        <item name="android:textColor">#FF47525E</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:lineSpacingMultiplier">1.3</item>
+    </style>
 
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
 
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
 </resources>
