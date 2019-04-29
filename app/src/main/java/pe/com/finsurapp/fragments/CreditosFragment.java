@@ -193,7 +193,7 @@ public class CreditosFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<Credito>> call, Throwable t) {
-                Toast.makeText(getContext(), Constantes.ERROR_NETWORK, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), Constantes.ERROR_NETWORK, Toast.LENGTH_SHORT).show();
                 t.printStackTrace();
             }
         });

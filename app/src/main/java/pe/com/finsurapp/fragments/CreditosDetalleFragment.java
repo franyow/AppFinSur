@@ -16,6 +16,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import pe.com.finsurapp.R;
+import pe.com.finsurapp.model.DetalleCredito;
+import pe.com.finsurapp.network.NetworkApi;
+import pe.com.finsurapp.network.RetrofitApiClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class CreditosDetalleFragment extends Fragment {
@@ -32,7 +38,14 @@ public class CreditosDetalleFragment extends Fragment {
     TextView textView3;
     @BindView(R.id.textView4)
     TextView textView4;
+    @BindView(R.id.txtRequisitos)
+    TextView txtRequisitos;
+    @BindView(R.id.txtBeneficios)
+    TextView txtBeneficios;
     private OnFragmentInteractionListener mListener;
+
+    NetworkApi networkApi = RetrofitApiClient.getClient().create(NetworkApi.class);
+    DetalleCredito detalleCredito;
 
 
     public CreditosDetalleFragment() {
@@ -57,7 +70,8 @@ public class CreditosDetalleFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_creditos_detalle, container, false);
         unbinder = ButterKnife.bind(this, view);
         nombreCredito.setText(nomCreForBundle);
-        Toast.makeText(getContext(), "Test- Codigo crédito: " + codCredForBundle, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(), "Test- Codigo crédito: " + codCredForBundle, Toast.LENGTH_SHORT).show();
+        cargarInfoCredito(Integer.valueOf(codCredForBundle));
 
         return view;
     }
@@ -97,6 +111,22 @@ public class CreditosDetalleFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    void cargarInfoCredito(int credito) {
+        networkApi.getDetalleCredito(credito).enqueue(new Callback<DetalleCredito>() {
+            @Override
+            public void onResponse(Call<DetalleCredito> call, Response<DetalleCredito> response) {
+                detalleCredito = response.body();
+                txtBeneficios.setText(detalleCredito.getBeneficios());
+                txtRequisitos.setText(detalleCredito.getRequisitos());
+            }
+
+            @Override
+            public void onFailure(Call<DetalleCredito> call, Throwable t) {
+
+            }
+        });
     }
 
 

@@ -1,6 +1,7 @@
 package pe.com.finsurapp.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +19,16 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import pe.com.finsurapp.R;
+import pe.com.finsurapp.activities.MapsActivity;
 import pe.com.finsurapp.adapters.AgenciasAdapter;
 import pe.com.finsurapp.model.Agencia;
+import pe.com.finsurapp.model.Credito;
+import pe.com.finsurapp.model.DetalleCredito;
+import pe.com.finsurapp.network.NetworkApi;
+import pe.com.finsurapp.network.RetrofitApiClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class AgenciasFragment extends Fragment {
@@ -28,6 +38,14 @@ public class AgenciasFragment extends Fragment {
     RecyclerView rvAgencias;
     AgenciasAdapter adapter;
     Unbinder unbinder;
+    String lat="0.0";
+    String lng="0.0";
+    String nombreAgencia = null;
+
+
+
+    NetworkApi networkApi = RetrofitApiClient.getClient().create(NetworkApi.class);
+
     private OnFragmentInteractionListener mListener;
 
     public AgenciasFragment() {
@@ -60,31 +78,59 @@ public class AgenciasFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_agencias, container, false);
         unbinder = ButterKnife.bind(this, view);
-        cargarAgencias();
+        //cargarAgencias();
+        cargarAgenciasFromApi();
         adapter = new AgenciasAdapter(agencias);
         rvAgencias.setLayoutManager(new LinearLayoutManager(getContext()));
         rvAgencias.setAdapter(adapter);
         rvAgencias.hasFixedSize();
 
 
+
         return view;
     }
 
-    public void cargarAgencias(){
-        agencias.add(new Agencia("Agencia Los Olivos","Av. Angélica Gamarra 131, Los Olivos 15302","(01) 5330814","","","LIMA"));
-        agencias.add(new Agencia("Agencia José Galvez","Lima 1119, Lima","(01) 2931043","","","LIMA"));
-        agencias.add(new Agencia("Agencia Manchay","Plaza De Armas, S/N, Lima","(01) 3574645","","","LIMA"));
-        agencias.add(new Agencia("Agencia Bellavista","Av. Oscar R. Benavides 4742, Bellavista 07006","","","","LIMA"));
-        agencias.add(new Agencia("Agencia Los Olivos","Av. Angélica Gamarra 131, Los Olivos 15302","(01) 5330814","","","LIMA"));
-        agencias.add(new Agencia("Agencia José Galvez","Lima 1119, Lima","(01) 2931043","","","LIMA"));
-        agencias.add(new Agencia("Agencia Manchay","Plaza De Armas, S/N, Lima","(01) 3574645","","","LIMA"));
-        agencias.add(new Agencia("Agencia Bellavista","Av. Oscar R. Benavides 4742, Bellavista 07006","","","","LIMA"));
-        agencias.add(new Agencia("Agencia Los Olivos","Av. Angélica Gamarra 131, Los Olivos 15302","(01) 5330814","","","LIMA"));
-        agencias.add(new Agencia("Agencia José Galvez","Lima 1119, Lima","(01) 2931043","","","LIMA"));
-        agencias.add(new Agencia("Agencia Manchay","Plaza De Armas, S/N, Lima","(01) 3574645","","","LIMA"));
-        agencias.add(new Agencia("Agencia Bellavista","Av. Oscar R. Benavides 4742, Bellavista 07006","","","","LIMA"));
 
-    }
+
+     void cargarAgenciasFromApi(){
+        networkApi.getAgencias().enqueue(new Callback<List<Agencia>>() {
+            @Override
+            public void onResponse(Call<List<Agencia>> call, Response<List<Agencia>> response) {
+                if(response.isSuccessful()){
+                    List<Agencia> listAgenciaResponse = response.body();
+
+                    for(Agencia agencia: listAgenciaResponse ){
+                        agencias.add(agencia);
+                    }
+                    adapter.notifyDataSetChanged();
+
+                    adapter.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //lat = agencias.get((Integer) view.getTag()).getLatAgencia();
+                            //lng = agencias.get((Integer) view.getTag()).getLongAgencia();
+                            lat = agencias.get(rvAgencias.getChildAdapterPosition(v)).getLatAgencia();
+                            lng = agencias.get(rvAgencias.getChildAdapterPosition(v)).getLongAgencia();
+                            nombreAgencia = agencias.get(rvAgencias.getChildAdapterPosition(v)).getNombreAgencia();
+
+                            //Toast.makeText(getActivity(), "map", Toast.LENGTH_SHORT).show();
+                            //lat = agencias.get((Integer) view.getTag()).getLatAgencia();
+                            //lng = agencias.get((Integer) view.getTag()).getLongAgencia();
+                            goingMapsFromAgencia(lat,lng,nombreAgencia);
+
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Agencia>> call, Throwable t) {
+
+            }
+        });
+
+
+     }
 
 
     public void onButtonPressed(Uri uri) {
@@ -120,5 +166,15 @@ public class AgenciasFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    void goingMapsFromAgencia(String latitud, String longitud,String nombreAgencia){
+        Intent intent = new Intent(getActivity(), MapsActivity.class);
+        intent.putExtra("latitud", latitud);
+        intent.putExtra("longitud", longitud);
+        intent.putExtra("nombreAgencia",nombreAgencia);
+
+        startActivity(intent);
+
     }
 }

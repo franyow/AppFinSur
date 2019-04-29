@@ -1,23 +1,37 @@
 package pe.com.finsurapp.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Agencia {
-    String nombreAgencia;
-    String direccionAgencia;
-    String telefonoAgencia;
-    String latAgencia;
-    String longAgencia;
-    String departamento;
+    @SerializedName("codAgencia")
+    @Expose
+    private Integer codAgencia;
+    @SerializedName("nombreAgencia")
+    @Expose
+    private String nombreAgencia;
+    @SerializedName("direccionAgencia")
+    @Expose
+    private String direccionAgencia;
+    @SerializedName("telefonoAgencia")
+    @Expose
+    private String telefonoAgencia;
+    @SerializedName("latAgencia")
+    @Expose
+    private String latAgencia;
+    @SerializedName("longAgencia")
+    @Expose
+    private String longAgencia;
 
     public Agencia() {
     }
 
-    public Agencia(String nombreAgencia, String direccionAgencia, String telefonoAgencia, String latAgencia, String longAgencia, String departamento) {
+    public Agencia(String nombreAgencia, String direccionAgencia, String telefonoAgencia, String latAgencia, String longAgencia) {
         this.nombreAgencia = nombreAgencia;
         this.direccionAgencia = direccionAgencia;
         this.telefonoAgencia = telefonoAgencia;
         this.latAgencia = latAgencia;
         this.longAgencia = longAgencia;
-        this.departamento = departamento;
     }
 
     public String getNombreAgencia() {
@@ -60,11 +74,5 @@ public class Agencia {
         this.longAgencia = longAgencia;
     }
 
-    public String getDepartamento() {
-        return departamento;
-    }
 
-    public void setDepartamento(String departamento) {
-        this.departamento = departamento;
-    }
 }

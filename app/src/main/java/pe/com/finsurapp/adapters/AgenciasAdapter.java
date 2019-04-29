@@ -30,6 +30,7 @@ public class AgenciasAdapter extends RecyclerView.Adapter<AgenciasAdapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_agencia,null,false);
+        view.setOnClickListener(this);
         return new ViewHolder(view);
     }
 
@@ -50,6 +51,11 @@ public class AgenciasAdapter extends RecyclerView.Adapter<AgenciasAdapter.ViewHo
         if(listener!=null){
             listener.onClick(v);
         }
+    }
+
+    public void setOnClickListener(View.OnClickListener listener){
+        this.listener=listener;
+
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
