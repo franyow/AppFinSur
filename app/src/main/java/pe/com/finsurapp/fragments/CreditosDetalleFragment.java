@@ -139,7 +139,7 @@ public class CreditosDetalleFragment extends Fragment {
     @OnClick(R.id.imgCall)
     public void callPhoneByCredito(){
         Intent callIntent = new Intent(Intent.ACTION_CALL);
-        callIntent.setData(Uri.parse("tel:0377778888"));
+        callIntent.setData(Uri.parse("tel:942353343"));
 
         if (ActivityCompat.checkSelfPermission(getActivity(),
                 Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {

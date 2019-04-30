@@ -5,7 +5,7 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
-@Database(entities = {SolicitudEntity.class,IngresoEntity.class}, version = 1)
+@Database(entities = {SolicitudEntity.class,IngresoEntity.class}, version = 1,exportSchema = false)
 public abstract class FinSurRoomDatabase extends RoomDatabase {
     public abstract SolicitudDao getSolicitudDao();
     public abstract IngresosDao getIngresoDao();

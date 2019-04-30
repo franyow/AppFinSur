@@ -3,23 +3,18 @@ package pe.com.finsurapp.model;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity
-public class IngresoEntity {
+public class IngresoEntity implements Serializable {
     @PrimaryKey(autoGenerate = true)
     Long idIngreso;
     String codUsuario;
     String ingreso;
     String descripcion;
 
-    public IngresoEntity() {
-    }
 
-    public IngresoEntity(Long idIngreso, String codUsuario, String ingreso, String descripcion) {
-        this.idIngreso = idIngreso;
-        this.codUsuario = codUsuario;
-        this.ingreso = ingreso;
-        this.descripcion = descripcion;
-    }
+
 
     public Long getIdIngreso() {
         return idIngreso;

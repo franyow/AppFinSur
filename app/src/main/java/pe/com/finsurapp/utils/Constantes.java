@@ -1,8 +1,8 @@
 package pe.com.finsurapp.utils;
 
 public class Constantes {
-    //public static final String BASE_URL = "https://finsur.herokuapp.com/";
-    public static final String BASE_URL = "http://10.0.2.2:8080/";
+    public static final String BASE_URL = "https://finsur.herokuapp.com/";
+    //public static final String BASE_URL = "http://10.0.2.2:8080/";
 
     public static final String GET_CREDITOS = "credito/getCreditos";
     public static final String GET_DETALLE_CREDITO = "detalleCredito/credito/{codCredito}";

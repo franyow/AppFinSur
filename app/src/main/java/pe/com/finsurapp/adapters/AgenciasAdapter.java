@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -61,9 +60,9 @@ public class AgenciasAdapter extends RecyclerView.Adapter<AgenciasAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.imgAgencia)
         ImageView imgAgencia;
-        @BindView(R.id.txtNombreAgencia)
+        @BindView(R.id.txtMontoIngreso)
         TextView txtNombreAgencia;
-        @BindView(R.id.txtTelefono)
+        @BindView(R.id.txtDescripcion)
         TextView txtTelefono;
         @BindView(R.id.txtDireccion)
         TextView txtDireccion;

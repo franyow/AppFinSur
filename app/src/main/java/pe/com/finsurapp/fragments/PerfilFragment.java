@@ -143,13 +143,14 @@ public class PerfilFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
+    //PREFERENCIAS DE USUARIO
     public void leerPreferencias(View view) {
         SharedPreferences preferences = getContext().getSharedPreferences(Constantes.PREFERENCES, Context.MODE_PRIVATE);
         String nombre = preferences.getString("nombre", "");
         txtNombreClient.setText(nombre);
 
     }
-
+    //luego de iniciar la cámara
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -176,7 +177,7 @@ public class PerfilFragment extends Fragment {
         }
     }
 
-
+    //INICIAR LA ACTIVIDAD DE LA CÁMARA
     @OnClick(R.id.imgPerfilUser)
     void takePicture() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -185,7 +186,7 @@ public class PerfilFragment extends Fragment {
 
 
     }
-
+    //transfarma bitmap a byte para enviar al servicio
     void bitMapToByte() {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
@@ -195,6 +196,7 @@ public class PerfilFragment extends Fragment {
         Log.e("THIS CONTEXT BITMAP", imageByte.toString());
     }
 
+    //envio al servicio web
     void savePhotoService() {
         PhotoRequest photoRequest = new PhotoRequest("1", imageByte.toString());
 

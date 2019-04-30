@@ -56,6 +56,8 @@ public class LoginActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         comprobarPermisos();
 
+
+
     }
 
 

@@ -21,6 +21,9 @@ public interface IngresosDao {
     @Delete
     void deleteIngreso(IngresoEntity ingresoEntity);
 
+    @Query("SELECT * FROM ingresoEntity")
+    List<IngresoEntity> getAll();
+
 
 
 }
