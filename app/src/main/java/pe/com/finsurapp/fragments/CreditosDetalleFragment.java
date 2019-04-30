@@ -136,7 +136,7 @@ public class CreditosDetalleFragment extends Fragment {
         });
     }
 
-    @OnClick(R.id.imgCall)
+    @OnClick(R.id.button)
     public void callPhoneByCredito(){
         Intent callIntent = new Intent(Intent.ACTION_CALL);
         callIntent.setData(Uri.parse("tel:942353343"));
