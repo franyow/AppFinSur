@@ -69,6 +69,8 @@ public class IngresosActivity extends AppCompatActivity {
         super.onStart();
         rvIngresos.setLayoutManager(new LinearLayoutManager(this));
         getTasks();
+
+
     }
 
     @Override
@@ -95,14 +97,28 @@ public class IngresosActivity extends AppCompatActivity {
             @Override
             protected void onPostExecute(List<IngresoEntity> tasks) {
                 super.onPostExecute(tasks);
-                IngresosAdapter adapter = new IngresosAdapter( tasks);
+                 adapter = new IngresosAdapter( tasks);
 
                 rvIngresos.setAdapter(adapter);
+
+                adapter.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        IngresoEntity task = tasks.get(rvIngresos.getChildAdapterPosition(v));
+                        Intent intent = new Intent(IngresosActivity.this, IngresosCrudActivity.class);
+                        intent.putExtra("ingreso", task);
+
+                        startActivity(intent);
+                    }
+                });
             }
         }
 
         GetTasks gt = new GetTasks();
         gt.execute();
+
+
+
     }
 
 

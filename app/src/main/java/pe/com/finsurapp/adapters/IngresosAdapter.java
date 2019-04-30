@@ -1,5 +1,6 @@
 package pe.com.finsurapp.adapters;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -13,11 +14,12 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import pe.com.finsurapp.R;
+import pe.com.finsurapp.activities.IngresosCrudActivity;
 import pe.com.finsurapp.model.IngresoEntity;
 
 public class IngresosAdapter extends RecyclerView.Adapter<IngresosAdapter.ViewHolder> implements View.OnClickListener {
     List<IngresoEntity> ingresoEntities;
-
+    private View.OnClickListener listener;
     public IngresosAdapter(List<IngresoEntity> ingresoEntities) {
         this.ingresoEntities = ingresoEntities;
     }
@@ -43,10 +45,17 @@ public class IngresosAdapter extends RecyclerView.Adapter<IngresosAdapter.ViewHo
 
     @Override
     public void onClick(View v) {
+        if(listener!=null){
+            listener.onClick(v);
+        }
+    }
+
+    public void setOnClickListener(View.OnClickListener listener){
+        this.listener=listener;
 
     }
 
-    static
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
