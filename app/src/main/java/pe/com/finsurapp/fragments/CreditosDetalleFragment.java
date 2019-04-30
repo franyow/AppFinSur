@@ -1,19 +1,24 @@
 package pe.com.finsurapp.fragments;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 import pe.com.finsurapp.R;
 import pe.com.finsurapp.model.DetalleCredito;
@@ -42,6 +47,8 @@ public class CreditosDetalleFragment extends Fragment {
     TextView txtRequisitos;
     @BindView(R.id.txtBeneficios)
     TextView txtBeneficios;
+    @BindView(R.id.imgCall)
+    ImageButton imgCall;
     private OnFragmentInteractionListener mListener;
 
     NetworkApi networkApi = RetrofitApiClient.getClient().create(NetworkApi.class);
@@ -127,6 +134,18 @@ public class CreditosDetalleFragment extends Fragment {
 
             }
         });
+    }
+
+    @OnClick(R.id.imgCall)
+    public void callPhoneByCredito(){
+        Intent callIntent = new Intent(Intent.ACTION_CALL);
+        callIntent.setData(Uri.parse("tel:0377778888"));
+
+        if (ActivityCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        startActivity(callIntent);
     }
 
 

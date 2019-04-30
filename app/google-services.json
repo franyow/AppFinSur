@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "132629170426",
+    "firebase_url": "https://finsurapp.firebaseio.com",
+    "project_id": "finsurapp",
+    "storage_bucket": "finsurapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:132629170426:android:5f206f5341955686",
+        "android_client_info": {
+          "package_name": "pe.com.finsurapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "132629170426-kbvs9cs8o959n8mk1no28spjmlv7e2l9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "pe.com.finsurapp",
+            "certificate_hash": "38cbfbd252b6d5041c7cde6509d3c2f430453982"
+          }
+        },
+        {
+          "client_id": "132629170426-mkd0ktpnpcl5ocs0pe9gq13n4dfr3leh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEzLzTd2-M7HNIqJJOakAUFHloyt8xzXo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "132629170426-mkd0ktpnpcl5ocs0pe9gq13n4dfr3leh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

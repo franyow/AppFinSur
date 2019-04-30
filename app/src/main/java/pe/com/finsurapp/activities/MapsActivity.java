@@ -1,16 +1,22 @@
 package pe.com.finsurapp.activities;
 
 import android.Manifest;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.LocationManager;
+import android.os.Build;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -126,4 +132,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             builder.create().show();
         }
     }
+
+    private void createChannel() {
+        // Notification channel should only be created for devices running Android API level 26+.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            NotificationChannel chan1 = new NotificationChannel(
+                    "default_channel_id",
+                    "default_channel_id",
+                    NotificationManager.IMPORTANCE_NONE);
+            chan1.setLightColor(Color.TRANSPARENT);
+            chan1.setLockscreenVisibility(Notification.VISIBILITY_SECRET);
+            notificationManager.createNotificationChannel(chan1);
+            Log.i("=========>", "Canal creado!!");
+
+        }
+    }
+
 }

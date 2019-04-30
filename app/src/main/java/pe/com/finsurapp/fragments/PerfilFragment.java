@@ -10,9 +10,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,9 +27,9 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import de.hdodenhof.circleimageview.CircleImageView;
 import pe.com.finsurapp.R;
+import pe.com.finsurapp.activities.IngresosActivity;
 import pe.com.finsurapp.model.request.PhotoRequest;
 import pe.com.finsurapp.model.response.PhotoResponse;
-import pe.com.finsurapp.model.response.PhotoUserResponse;
 import pe.com.finsurapp.network.NetworkApi;
 import pe.com.finsurapp.network.RetrofitApiClient;
 import pe.com.finsurapp.utils.Constantes;
@@ -62,6 +64,8 @@ public class PerfilFragment extends Fragment {
     byte[] imageByte;
 
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1888;
+    @BindView(R.id.btnRegistrarIngresos)
+    Button btnRegistrarIngresos;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -165,7 +169,8 @@ public class PerfilFragment extends Fragment {
                         byteArray.length);
 
                 imgPerfilUser.setImageBitmap(bitmap);
-                bitMapToByte();
+                Log.e("THIS CONTEXT BITMAP", bitmap.toString());
+                //bitMapToByte();
                 //savePhotoService();
             }
         }
@@ -183,20 +188,22 @@ public class PerfilFragment extends Fragment {
 
     void bitMapToByte() {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
         imageByte = stream.toByteArray();
         bitmap.recycle();
+
+        Log.e("THIS CONTEXT BITMAP", imageByte.toString());
     }
 
-    void savePhotoService( ){
-        PhotoRequest photoRequest = new PhotoRequest("1",imageByte.toString());
+    void savePhotoService() {
+        PhotoRequest photoRequest = new PhotoRequest("1", imageByte.toString());
 
         NetworkApi networkApi = RetrofitApiClient.getClient().create(NetworkApi.class);
 
         networkApi.savePhotoUser(photoRequest).enqueue(new Callback<PhotoResponse>() {
             @Override
             public void onResponse(Call<PhotoResponse> call, Response<PhotoResponse> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     PhotoResponse photoResponse = response.body();
                     Toast.makeText(getActivity(), photoResponse.getMessage(), Toast.LENGTH_SHORT).show();
                 }
@@ -207,6 +214,13 @@ public class PerfilFragment extends Fragment {
                 Toast.makeText(getActivity(), "Error de Conexión", Toast.LENGTH_SHORT).show();
             }
         });
+
+    }
+
+    @OnClick(R.id.btnRegistrarIngresos)
+    public void navigateToRegistrarIngresosActivity(){
+        Intent intent = new Intent(getActivity(), IngresosActivity.class);
+        startActivity(intent);
 
     }
 

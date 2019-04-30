@@ -218,6 +218,7 @@
         </LinearLayout>
 
         <Button
+            android:id="@+id/btnRegistrarIngresos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -226,7 +227,7 @@
             android:layout_marginRight="15dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/buttonstyle"
-            android:text="Modificar Datos"
+            android:text="Registrar Ingresos"
             android:textColor="@color/white" />
 
     </LinearLayout>
