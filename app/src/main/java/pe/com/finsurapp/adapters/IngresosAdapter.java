@@ -33,7 +33,7 @@ public class IngresosAdapter extends RecyclerView.Adapter<IngresosAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         viewHolder.txtDescripcion.setText(ingresoEntities.get(i).getDescripcion());
-        viewHolder.txtMontoIngreso.setText(ingresoEntities.get(i).getIngreso());
+        viewHolder.txtMontoIngreso.setText("S/. " +ingresoEntities.get(i).getIngreso());
     }
 
     @Override

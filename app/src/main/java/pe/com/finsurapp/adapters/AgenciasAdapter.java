@@ -1,5 +1,6 @@
 package pe.com.finsurapp.adapters;
 
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -36,6 +37,7 @@ public class AgenciasAdapter extends RecyclerView.Adapter<AgenciasAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         viewHolder.txtNombreAgencia.setText(listAgencias.get(i).getNombreAgencia());
+        viewHolder.txtNombreAgencia.setTextColor(Color.parseColor("#1e88e5"));
         viewHolder.txtDireccion.setText(listAgencias.get(i).getDireccionAgencia());
         viewHolder.txtTelefono.setText(listAgencias.get(i).getTelefonoAgencia());
     }

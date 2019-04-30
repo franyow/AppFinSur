@@ -16,4 +16,5 @@
     <string name="title_activity_gestion_ingresos">GestionIngresos</string>
     <string name="descripci_n">Descripción</string>
     <string name="monto">Monto</string>
+    <string name="title_activity_ingresos_crud">IngresosCrudActivity</string>
 </resources>

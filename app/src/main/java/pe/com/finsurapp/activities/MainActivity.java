@@ -54,6 +54,8 @@ public class MainActivity extends AppCompatActivity implements AgenciasFragment.
             cargarFragment(fragment);
         }
 
+        setTitle("Financiera Del Sur");
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }

@@ -27,7 +27,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.RegistroIngresoActivity"></activity>
+        <activity
+            android:name=".activities.IngresosCrudActivity"
+            android:label="@string/title_activity_ingresos_crud"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".activities.RegistroIngresoActivity" />
         <activity
             android:name=".activities.IngresosActivity"
             android:label="@string/title_activity_ingresos"

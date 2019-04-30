@@ -35,6 +35,8 @@ public class IngresosActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         //getActionBar().setTitle("Ingresos Monetarios");
 
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -49,10 +51,12 @@ public class IngresosActivity extends AppCompatActivity {
             }
         });
 
+
         //getTasks();
         //adapter = new IngresosAdapter(ingresoEntities);
 
         //rvIngresos.setAdapter(adapter);
+        setTitle("Ingresos");
 
 
 
@@ -65,6 +69,12 @@ public class IngresosActivity extends AppCompatActivity {
         super.onStart();
         rvIngresos.setLayoutManager(new LinearLayoutManager(this));
         getTasks();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     private void getTasks() {
